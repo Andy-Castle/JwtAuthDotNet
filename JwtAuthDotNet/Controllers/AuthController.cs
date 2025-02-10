@@ -1,6 +1,7 @@
 ﻿using JwtAuthDotNet.Entities;
 using JwtAuthDotNet.Models;
 using JwtAuthDotNet.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,14 @@ namespace JwtAuthDotNet.Controllers
             }
 
             return Ok(token);
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult AuthenticatedOnlyEndpoint()
+        {
+            return Ok("You are authenticated!");
         }
      
     }
